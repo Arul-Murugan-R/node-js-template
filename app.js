@@ -13,13 +13,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.set('view engine','ejs')
-// app.use('/login', (req, res, next) => {
-//     res.render('login',{title:'login page'})
-// })
+app.use('/login', (req, res, next) => {
+    res.render('login',{title:'login page'})
+})
 
 app.use('/auth/google',
     passport.authenticate('google',{scope :['email','profile']})
 )
+app.use('/auth/form',(req,res,next) =>{
+    res.send('Working Good')
+})
 
 app.use('/auth/callback', 
     passport.authenticate( 'google', {
