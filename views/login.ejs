@@ -2,39 +2,197 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title  %> </title>
-    <!-- *Client ID :* 129562915542-f5mr7qt9pnvfep4agnr3piuummq7okh5.apps.googleusercontent.com *Client secret :* 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 -->
+    <title><%= title %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+body {
+    background-color: #f2f7fb
+}
+
+.login-block {
+    margin: 30px auto;
+    min-height: 93.6vh
+}
+
+.login-block .auth-box {
+    margin: 20px auto 0;
+    max-width: 450px !important
+}
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px 0 rgba(43, 43, 43, .1), 0 11px 6px -7px rgba(43, 43, 43, .1);
+    box-shadow: 0 0 5px 0 rgba(43, 43, 43, .1), 0 11px 6px -7px rgba(43, 43, 43, .1);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+        background-color: #fff;
+}
+
+.card .card-block {
+    padding: 1.25rem
+}
+
+.f-80 {
+    font-size: 80px
+}
+
+.form-group {
+    margin-bottom: 1.25em
+}
+
+.form-material .form-control {
+    display: inline-block;
+    height: 43px;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 9px;
+    background-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ccc
+}
+
+.btn-md {
+    padding: 10px 16px;
+    font-size: 15px;
+    line-height: 23px
+}
+
+.btn-primary {
+    background-color: #4099ff;
+    border-color: #4099ff;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: all ease-in .3s;
+    transition: all ease-in .3s
+}
+
+.btn {
+    border-radius: 2px;
+    text-transform: capitalize;
+    font-size: 15px;
+    padding: 10px 19px;
+    cursor: pointer
+}
+
+.m-b-20 {
+    margin-bottom: 20px
+}
+
+.btn-md {
+    padding: 10px 16px;
+    font-size: 15px;
+    line-height: 23px
+}
+
+.heading{
+
+  font-size: 21px;
+
+}
+
+#infoMessage p{
+
+      color: red !important;
+}
+
+
+.btn-google {
+        color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px 1px #ddd;
+}
+
+
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 0;
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px;
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center;
+}
+    </style>
 </head>
 <body>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <div id="g_id_onload"
-         data-client_id="129562915542-f5mr7qt9pnvfep4agnr3piuummq7okh5.apps.googleusercontent.com"
-         data-ux_mode="redirect"
-         data-login_uri="http://localhost:5000">
-    </div>
-    <!-- <div class="g_id_signin" data-type="standard"></div> -->
-    <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
-    <div class="g_id_sigin" data-onsuccess="onSignIn"></div>
-        <a href="#" onclick="signOut();">Sign out</a>
-        <script>
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-              }
-            </script>
-        <script>
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            console.log('User signed out.');
-            });
-        }
-        </script>
+    <section class="login-block">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="md-float-material form-material" action="/auth/form" method="POST">
+                        <div class="auth-box card">
+                            <div class="card-block">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 class="text-center heading" >Create your BBBootstrap account. It&rsquo;s free and only takes a minute.</h3>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group form-primary">
+                                 
+                                     <input type="text" class="form-control" name="first_name" value="" placeholder="Display name" id="first_name"> 
+                                </div>
+    
+                                <div class="form-group form-primary">
+                                    <input type="text" class="form-control" name="email" value="" placeholder="Email" id="email">
+                                   
+                                </div>
+    
+                                <div class="form-group form-primary">
+                                   <input type="password" class="form-control" name="password" placeholder="Password" value="" id="password">
+                                  
+                                </div>
+    
+                                <div class="form-group form-primary">
+                                    <input type="password" class="form-control" name="password_confirm" placeholder="Repeat password" value="" id="password_confirm">
+                                    
+                                </div>
+    
+    
+                                <div class="row">
+                                    <div class="col-md-12">
+    
+                                        <input type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" name="submit" value="Signup Now">
+                                       <!--  <button type="button" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"><i class="fa fa-lock"></i> Signup Now </button> -->
+                                    </div>
+                                </div>
+    
+                                <div class="or-container"><div class="line-separator"></div> <div class="or-label">or</div><div class="line-separator"></div></div>
+    
+    
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="/auth/google"><img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google</a>
+    
+                                    </div>
+                                </div>
+                                <br>
+    
+                                <p class="text-inverse text-center">Already have an account? <a href="<?= base_url() ?>auth/login" data-abc="true">Login</a></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 </body>
 </html>
